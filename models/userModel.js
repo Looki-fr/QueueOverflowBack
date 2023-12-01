@@ -3,7 +3,7 @@ import db from "../config/database.js";
  
 const { DataTypes } = Sequelize;
  
-const User = db.define('user',{
+const U = db.define('user',{
     UserID:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -19,13 +19,15 @@ const User = db.define('user',{
     },
     Age:{
         type: DataTypes.INTEGER
-    }
+    },
 },{
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false,
 });
  
-User.removeAttribute('id');
-User.removeAttribute('createdAt');
-User.removeAttribute('updatedAt');
+U.removeAttribute('id');
+U.removeAttribute('createdAt');
+U.removeAttribute('updatedAt');
+U.tableName = 'user';
 
-export default User;
+export default U;
