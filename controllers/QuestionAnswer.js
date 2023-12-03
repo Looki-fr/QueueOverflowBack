@@ -24,3 +24,25 @@ export const getQuestionAnswerById = async (req, res) => {
     }  
 }
  
+export const createQuestionAnswer = async (req, res) => {
+    try {
+        const questionAnswer = await QuestionAnswer.create(req.body);
+        res.json(questionAnswer);
+    } catch (error) {
+        res.json({ message: error.message });
+        console.log("error : ", error)
+    }  
+}
+
+export const getLastQuestionAnswer = async (req, res) => {
+    try {
+        const questionAnswer = await QuestionAnswer.findAll({
+            limit: 1,
+            order: [ [ 'QuestionAnswerID', 'DESC' ]]
+        });
+        res.json(questionAnswer[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+        console.log("error : ", error)
+    }  
+}

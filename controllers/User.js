@@ -37,6 +37,20 @@ export const getUserByEmail = async (req, res) => {
     }  
 }
 
+export const getUserByName = async (req, res) => {
+    try {
+        const users = await U.findAll({
+            where: {
+                Username: req.params.name
+            }
+        });
+        res.json(users[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+        console.log("error : ", error)
+    }  
+}
+
 export const createUser = async (req, res) => {
     try {
         await U.create(req.body);

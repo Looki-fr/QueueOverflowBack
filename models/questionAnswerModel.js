@@ -15,7 +15,8 @@ const QuestionAnswer = db.define('questionanswer',{
         type: DataTypes.INTEGER,
     },
 },{
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false,
 });
  
 QuestionAnswer.removeAttribute('id');

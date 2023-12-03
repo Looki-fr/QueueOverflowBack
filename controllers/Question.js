@@ -43,3 +43,26 @@ export const getQuestionThatContainDescription = async (req, res) => {
         console.log("error : ", error)
     }  
 }
+
+export const createQuestion = async (req, res) => {
+    try {
+        const question = await Question.create(req.body);
+        res.json(question);
+    } catch (error) {
+        res.json({ message: error.message });
+        console.log("error : ", error)
+    }  
+}
+
+export const getLastQuestion = async (req, res) => {
+    try {
+        const question = await Question.findAll({
+            limit: 1,
+            order: [ [ 'QuestionID', 'DESC' ]]
+        });
+        res.json(question[0]);
+    } catch (error) {
+        res.json({ message: error.message });
+        console.log("error : ", error)
+    }  
+}

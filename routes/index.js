@@ -12,16 +12,21 @@ import {
     getAllQuestions,
     getQuestionById,
     getQuestionThatContainDescription,
+    createQuestion,
+    getLastQuestion,
 } from "../controllers/Question.js";
 
 import {
     getQuestionAnswerById,
     getAllQuestionAnswers,
+    createQuestionAnswer,
+    getLastQuestionAnswer,
 } from "../controllers/QuestionAnswer.js";
 
 import {
     getAllAnswers,
     getAnswerByIsAnswering,
+    createAnswer,
 } from "../controllers/Answer.js";
 
 import {
@@ -29,7 +34,8 @@ import {
     getUserById,
     getUserByEmail,
     createUser,
-    getLastUser
+    getLastUser,
+    getUserByName,
 } from "../controllers/User.js";
 
 const router = express.Router();
@@ -42,13 +48,19 @@ const router = express.Router();
  
 router.get('/questions', getAllQuestions);
 router.get('/questions/:id', getQuestionById);
+router.post('/questions', createQuestion);
+router.get('/lastQuestion', getLastQuestion);
 router.get('/questionAnswers/:id', getQuestionAnswerById);
 router.get('/questionAnswers', getAllQuestionAnswers);
+router.post('/questionAnswers', createQuestionAnswer);
+router.get('/lastQuestionAnswer', getLastQuestionAnswer);
 router.get('/answers', getAllAnswers);
 router.get('/answers/isAnswering/:id', getAnswerByIsAnswering);
+router.post('/answers', createAnswer);
 router.get('/users', getAllUsers);
 router.get('/users/:id', getUserById);
 router.get('/users/email/:email', getUserByEmail);
+router.get('/usersByName/:name', getUserByName);
 router.get('/lastUser', getLastUser);
 router.post('/users', createUser);
 router.get('/questions/search/:description', getQuestionThatContainDescription);

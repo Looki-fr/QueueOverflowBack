@@ -24,7 +24,8 @@ const Question = db.define('question',{
         type: DataTypes.INTEGER,
     },
 },{
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false,
 });
  
 Question.removeAttribute('id');

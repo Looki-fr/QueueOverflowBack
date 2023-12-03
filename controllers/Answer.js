@@ -23,3 +23,13 @@ export const getAnswerByIsAnswering = async (req, res) => {
         console.log("error : ", error)
     }  
 }
+
+export const createAnswer = async (req, res) => {
+    try {
+        const answer = await Answer.create(req.body);
+        res.json(answer);
+    } catch (error) {
+        res.json({ message: error.message });
+        console.log("error : ", error)
+    }  
+}
