@@ -33,3 +33,17 @@ export const createAnswer = async (req, res) => {
         console.log("error : ", error)
     }  
 }
+
+export const getLastAnswer = async (req, res) => {
+    try {
+        const answer = await Answer.findOne({
+            order: [
+                ['AnswerID', 'DESC']
+            ],
+        });
+        res.json(answer);
+    } catch (error) {
+        res.json({ message: error.message });
+        console.log("error : ", error)
+    }  
+}

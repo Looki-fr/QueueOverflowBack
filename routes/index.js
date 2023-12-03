@@ -27,6 +27,7 @@ import {
     getAllAnswers,
     getAnswerByIsAnswering,
     createAnswer,
+    getLastAnswer,
 } from "../controllers/Answer.js";
 
 import {
@@ -57,6 +58,7 @@ router.get('/lastQuestionAnswer', getLastQuestionAnswer);
 router.get('/answers', getAllAnswers);
 router.get('/answers/isAnswering/:id', getAnswerByIsAnswering);
 router.post('/answers', createAnswer);
+router.get('/lastAnswer', getLastAnswer);
 router.get('/users', getAllUsers);
 router.get('/users/:id', getUserById);
 router.get('/users/email/:email', getUserByEmail);
