@@ -37,6 +37,8 @@ import {
     createUser,
     getLastUser,
     getUserByName,
+    hashPassword,
+    checkPassword
 } from "../controllers/User.js";
 
 const router = express.Router();
@@ -65,6 +67,8 @@ router.get('/users/email/:email', getUserByEmail);
 router.get('/usersByName/:name', getUserByName);
 router.get('/lastUser', getLastUser);
 router.post('/users', createUser);
+router.get('/hashPassword/:password', hashPassword)
+router.get('/checkPassword/:password/:hash', checkPassword)
 router.get('/questions/search/:description', getQuestionThatContainDescription);
 
 

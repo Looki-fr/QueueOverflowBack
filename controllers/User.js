@@ -1,4 +1,5 @@
 import U from "../models/userModel.js";
+import bcrypt from "bcrypt";
 export const getAllUsers = async (req, res) => {
     try {
         const users = await U.findAll();
@@ -76,3 +77,33 @@ export const getLastUser = async (req, res) => {
         console.log("error : ", error)
     }  
 }
+
+export const hashPassword = async (req, res) => {
+    bcrypt.hash(req.params.password, 10)
+        .then(hash => {
+            try {
+                res.json({hash:hash});
+            } catch (error) {
+                res.json({ message: error.message });
+                console.log("error : ", error)
+            }
+        })
+        .catch(err => {
+            res.json({ message: err.message });
+        })
+}
+
+export const checkPassword = async (req, res) => {
+    bcrypt.compare(req.params.password, req.params.hash)
+        .then(result => {
+            try {
+                res.json({result:result});
+            } catch (error) {
+                res.json({ message: error.message });
+                console.log("error : ", error)
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }

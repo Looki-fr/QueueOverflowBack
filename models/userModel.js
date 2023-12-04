@@ -18,8 +18,11 @@ const U = db.define('user',{
         type: DataTypes.STRING,
     },
     Age:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
     },
+    password:{
+        type: DataTypes.STRING
+    }
 },{
     freezeTableName: true,
     timestamps: false,
