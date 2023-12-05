@@ -3,30 +3,34 @@ import db from "../config/database.js";
  
 const { DataTypes } = Sequelize;
  
-const Answer = db.define('answer',{
-    AnswerID:{
+const Exercise = db.define('exercise',{
+    ExerciseID:{
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
-    QuestionAnswerID:{
-        type: DataTypes.INTEGER,
-    },
-    Answer:{
+    Date:{
         type: DataTypes.STRING,
     },
-    isAnswering:{
+    Description:{
+        type: DataTypes.STRING,
+    },
+    CodeAnswer:{
+        type: DataTypes.STRING,
+    },
+    UserID :{
         type: DataTypes.INTEGER,
     }, 
-    Type : {
+    Tag : {
         type: DataTypes.STRING,
     }
+
 },{
     freezeTableName: true,
     timestamps: false,
 });
- 
-Answer.removeAttribute('id');
-Answer.removeAttribute('createdAt');
-Answer.removeAttribute('updatedAt');
 
-export default Answer;
+Exercise.removeAttribute('id');
+Exercise.removeAttribute('createdAt');
+Exercise.removeAttribute('updatedAt');
+
+export default Exercise;

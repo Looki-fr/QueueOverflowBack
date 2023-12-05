@@ -1,4 +1,5 @@
 import Answer from "../models/answerModel.js";
+import { Op } from "sequelize";
 
 export const getAllAnswers = async (req, res) => {
     try {
@@ -14,7 +15,10 @@ export const getAnswerByIsAnswering = async (req, res) => {
     try {
         const answers = await Answer.findAll({
             where: {
-                isAnswering: req.params.id
+                [Op.and]: [
+                    {isAnswering: req.params.id},
+                    {Type: req.params.type}
+                ]
             }
         });
         res.json(answers);

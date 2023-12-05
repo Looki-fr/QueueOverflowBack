@@ -41,6 +41,16 @@ import {
     checkPassword
 } from "../controllers/User.js";
 
+import {
+    getAllExercises,
+    getExerciseThatContainDescription,
+    getExerciseByUserID,
+    createExercise,
+    getLastExercise,
+    getExerciseByID
+} from "../controllers/Exercise.js";
+
+
 const router = express.Router();
 
 // router.get('/', getAllProducts);
@@ -58,7 +68,7 @@ router.get('/questionAnswers', getAllQuestionAnswers);
 router.post('/questionAnswers', createQuestionAnswer);
 router.get('/lastQuestionAnswer', getLastQuestionAnswer);
 router.get('/answers', getAllAnswers);
-router.get('/answers/isAnswering/:id', getAnswerByIsAnswering);
+router.get('/answers/isAnswering/:id/:type', getAnswerByIsAnswering);
 router.post('/answers', createAnswer);
 router.get('/lastAnswer', getLastAnswer);
 router.get('/users', getAllUsers);
@@ -70,6 +80,11 @@ router.post('/users', createUser);
 router.get('/hashPassword/:password', hashPassword)
 router.get('/checkPassword/:password/:hash', checkPassword)
 router.get('/questions/search/:description', getQuestionThatContainDescription);
-
+router.get('/exercises', getAllExercises);
+router.get('/exercises/:id', getExerciseByID);
+router.get('/exercises/search/:description', getExerciseThatContainDescription);
+router.get('/exercises/user/:id', getExerciseByUserID);
+router.post('/exercises', createExercise);
+router.get('/lastExercise', getLastExercise);
 
 export default router;
