@@ -25,7 +25,6 @@ export const getQuestionById = async (req, res) => {
     }  
 }
 
- 
 export const getQuestionThatContainDescription = async (req, res) => {
     try {
         const questions = await Question.findAll({

@@ -38,7 +38,8 @@ import {
     getLastUser,
     getUserByName,
     hashPassword,
-    checkPassword
+    checkPassword,
+    getUserByEmailNode,
 } from "../controllers/User.js";
 
 import {
@@ -86,5 +87,52 @@ router.get('/exercises/search/:description', getExerciseThatContainDescription);
 router.get('/exercises/user/:id', getExerciseByUserID);
 router.post('/exercises', createExercise);
 router.get('/lastExercise', getLastExercise);
+
+// Login endpoint
+router.post("/login", async (req, res) => {
+    const { id } = req.body;
+    console.log("id",id)
+    try {
+        req.session.userId = id;
+        req.session.save((err) => {
+          if (err) {
+            console.error("Session save error:", err);
+            res.status(500).json({ message: "Internal server error" });
+          } else {
+            console.log("Login successful");
+            res.json({ message: "Login successful" });
+          }
+        });
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+  
+  // Logout endpoint
+  router.post("/logout", (req, res) => {
+    req.session.destroy();
+    res.json({ message: "Logout successful" });
+  });
+
+  
+  router.get("/currentUserId", (req, res) => {
+    console.log("Session ID:", req.session.id);
+    console.log("Session Data:", req.session);
+  
+    const userId = req.session.userId;
+  
+    if (userId) {
+      res.json({ userId });
+    } else {
+      res.status(401).json({ message: "Not logged in" });
+    }
+  });
+  
+
+  // router.get("/currentUserId", (req, res) => {
+  //   res.json({ message: "Current user ID route reached" });
+  // });
+  
 
 export default router;

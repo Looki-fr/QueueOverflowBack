@@ -107,3 +107,13 @@ export const checkPassword = async (req, res) => {
             console.log(err)
         })
     }
+
+export const getUserByEmailNode = async (email) => {
+    try {
+        const user = await U.findOne({ where: { Email: email } });
+        return user;
+    } catch (error) {
+        console.error("Get user by email error:", error);
+        throw error;
+    }
+    };
