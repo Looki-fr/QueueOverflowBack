@@ -117,3 +117,22 @@ export const getUserByEmailNode = async (email) => {
         throw error;
     }
     };
+
+    export const updateDoneExercise = async (req, res) => {
+        try {
+            await U.update(req.body, {
+                where: {
+                    UserID: req.params.id
+                }
+            });
+            console.log("User updated", req.body);
+            res.json({
+                "message": "Product Updated"
+            });
+        } catch (error) {
+            console.log("ERRORORORORORO", req.body);
+            console.log(error.message)
+            res.json({ message: error.message });
+        }  
+    }
+     

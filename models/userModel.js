@@ -22,6 +22,9 @@ const U = db.define('user',{
     },
     password:{
         type: DataTypes.STRING
+    },
+    doneExercise:{
+        type: DataTypes.STRING
     }
 },{
     freezeTableName: true,

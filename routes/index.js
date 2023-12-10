@@ -40,6 +40,7 @@ import {
     hashPassword,
     checkPassword,
     getUserByEmailNode,
+    updateDoneExercise
 } from "../controllers/User.js";
 
 import {
@@ -76,6 +77,7 @@ router.get('/users', getAllUsers);
 router.get('/users/:id', getUserById);
 router.get('/users/email/:email', getUserByEmail);
 router.get('/usersByName/:name', getUserByName);
+router.patch('/users/updateExerciseDone/:id', updateDoneExercise);
 router.get('/lastUser', getLastUser);
 router.post('/users', createUser);
 router.get('/hashPassword/:password', hashPassword)
@@ -88,46 +90,46 @@ router.get('/exercises/user/:id', getExerciseByUserID);
 router.post('/exercises', createExercise);
 router.get('/lastExercise', getLastExercise);
 
-// Login endpoint
-router.post("/login", async (req, res) => {
-    const { id } = req.body;
-    console.log("id",id)
-    try {
-        req.session.userId = id;
-        req.session.save((err) => {
-          if (err) {
-            console.error("Session save error:", err);
-            res.status(500).json({ message: "Internal server error" });
-          } else {
-            console.log("Login successful");
-            res.json({ message: "Login successful" });
-          }
-        });
-    } catch (error) {
-      console.error("Login error:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  });
+// // Login endpoint
+// router.post("/login", async (req, res) => {
+//     const { id } = req.body;
+//     console.log("id",id)
+//     try {
+//         req.session.userId = id;
+//         req.session.save((err) => {
+//           if (err) {
+//             console.error("Session save error:", err);
+//             res.status(500).json({ message: "Internal server error" });
+//           } else {
+//             console.log("Login successful");
+//             res.json({ message: "Login successful" });
+//           }
+//         });
+//     } catch (error) {
+//       console.error("Login error:", error);
+//       res.status(500).json({ message: "Internal server error" });
+//     }
+//   });
   
-  // Logout endpoint
-  router.post("/logout", (req, res) => {
-    req.session.destroy();
-    res.json({ message: "Logout successful" });
-  });
+//   // Logout endpoint
+//   router.post("/logout", (req, res) => {
+//     req.session.destroy();
+//     res.json({ message: "Logout successful" });
+//   });
 
   
-  router.get("/currentUserId", (req, res) => {
-    console.log("Session ID:", req.session.id);
-    console.log("Session Data:", req.session);
+//   router.get("/currentUserId", (req, res) => {
+//     console.log("Session ID:", req.session.id);
+//     console.log("Session Data:", req.session);
   
-    const userId = req.session.userId;
+//     const userId = req.session.userId;
   
-    if (userId) {
-      res.json({ userId });
-    } else {
-      res.status(401).json({ message: "Not logged in" });
-    }
-  });
+//     if (userId) {
+//       res.json({ userId });
+//     } else {
+//       res.status(401).json({ message: "Not logged in" });
+//     }
+//   });
   
 
   // router.get("/currentUserId", (req, res) => {
